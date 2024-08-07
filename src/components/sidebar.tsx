@@ -1,11 +1,9 @@
-"use client";
 import type { FC } from "react";
 import Link from "next/link";
 import { Sidebar } from "flowbite-react";
 import { HiHome, HiUser, HiCog, HiLogout } from "react-icons/hi";
 import { twMerge } from "tailwind-merge";
 import { usePathname } from "next/navigation";
-
 import { useSidebarContext } from "@/src/context/sidebar-context";
 
 const links = [
@@ -15,18 +13,17 @@ const links = [
   { name: "Log Out", href: "#", icon: HiLogout },
 ];
 
-export const DashboardSidebar: FC = function () {
+const DashboardSidebar: FC = function () {
   const { isCollapsed } = useSidebarContext();
   const pathname = usePathname();
 
   return (
     <Sidebar
-      aria-label="Sidebar with multi-level dropdown example"
       collapsed={isCollapsed}
       id="sidebar"
       className={twMerge(
         "fixed inset-y-0 left-0 z-20 mt-16 flex h-full shrink-0 flex-col border-r border-gray-200 duration-75 dark:border-gray-700 lg:flex",
-        isCollapsed && "hidden w-16"
+        isCollapsed && "hidden lg:block w-16"
       )}
     >
       <Sidebar.Items>
@@ -39,8 +36,8 @@ export const DashboardSidebar: FC = function () {
               icon={l.icon}
               className={twMerge(
                 "flex justify-start",
-                pathname === l.href &&
-                  "hover:bg-blue-500 hover:text-white bg-blue-500 text-white"
+                pathname === l.href && "bg-blue-500 text-white", // Ensure hover styles are consistent
+                pathname !== l.href && "hover:bg-blue-100" // Add hover effect for non-active items
               )}
               key={key}
             >
@@ -52,3 +49,5 @@ export const DashboardSidebar: FC = function () {
     </Sidebar>
   );
 };
+
+export default DashboardSidebar;
