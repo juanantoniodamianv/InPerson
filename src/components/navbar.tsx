@@ -32,7 +32,7 @@ export const DashboardNavbar: FC<Record<string, never>> = function () {
               </button>
               <Navbar.Brand href="/">
                 <span className="self-center whitespace-nowrap px-3 text-xl font-semibold dark:text-white">
-                  Motor Online
+                  InPerson
                 </span>
               </Navbar.Brand>
             </div>

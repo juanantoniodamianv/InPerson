@@ -1,4 +1,4 @@
-# Motor Online
+# InPerson
 
 This project uses [Supabase](https://supabase.com/docs) and [Next.js](https://nextjs.org/docs). Refer to the documentation for more information on how to use them.
 

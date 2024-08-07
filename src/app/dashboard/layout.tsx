@@ -6,7 +6,7 @@ import { DashboardLayoutContent } from "@/src/components/dashboard-layout-conten
 import "../globals.css";
 
 export const metadata: Metadata = {
-  title: "Motor Online - Dashboard",
+  title: "InPerson - Dashboard",
 };
 
 export default function ({
