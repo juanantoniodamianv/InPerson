@@ -1,22 +1,23 @@
-import Link from "next/link";
-import { useSidebarContext } from "@/src/context/sidebar-context";
-import { Sidebar } from "flowbite-react";
+"use client";
 import type { FC } from "react";
-import {
-  HiHome,
-  HiPencilAlt,
-  HiCollection,
-  HiHeart,
-  HiUser,
-  HiUserGroup,
-  HiCog,
-  HiLogout,
-  HiMail,
-} from "react-icons/hi";
+import Link from "next/link";
+import { Sidebar } from "flowbite-react";
+import { HiHome, HiUser, HiCog, HiLogout } from "react-icons/hi";
 import { twMerge } from "tailwind-merge";
+import { usePathname } from "next/navigation";
+
+import { useSidebarContext } from "@/src/context/sidebar-context";
+
+const links = [
+  { name: "Home", href: "/dashboard", icon: HiHome },
+  { name: "My Profile", href: "/dashboard/my-profile", icon: HiUser },
+  { name: "Configurations", href: "/dashboard/configurations", icon: HiCog },
+  { name: "Log Out", href: "#", icon: HiLogout },
+];
 
 export const DashboardSidebar: FC = function () {
   const { isCollapsed } = useSidebarContext();
+  const pathname = usePathname();
 
   return (
     <Sidebar
@@ -29,63 +30,23 @@ export const DashboardSidebar: FC = function () {
       )}
     >
       <Sidebar.Items>
-        {/* First Group: Main Navigation */}
         <Sidebar.ItemGroup>
-          <Link href="/dashboard" passHref>
-            <Sidebar.Item icon={HiHome} className="flex justify-start">
-              Inicio
-            </Sidebar.Item>
-          </Link>
-          <Link href="/dashboard/new-publication" passHref>
-            <Sidebar.Item icon={HiPencilAlt} className="flex justify-start">
-              Nueva Publicación
-            </Sidebar.Item>
-          </Link>
-          <Link href="/dashboard/my-publications" passHref>
-            <Sidebar.Item icon={HiCollection} className="flex justify-start">
-              Mis Publicaciones
-            </Sidebar.Item>
-          </Link>
-          <Link href="/dashboard/my-favorites" passHref>
+          {links.map((l, key) => (
             <Sidebar.Item
-              href="#"
-              icon={HiHeart}
-              className="flex justify-start"
+              as={Link}
+              href={l.href}
+              prefetch={false}
+              icon={l.icon}
+              className={twMerge(
+                "flex justify-start",
+                pathname === l.href &&
+                  "hover:bg-blue-500 hover:text-white bg-blue-500 text-white"
+              )}
+              key={key}
             >
-              Mis Favoritos
+              {l.name}
             </Sidebar.Item>
-          </Link>
-        </Sidebar.ItemGroup>
-
-        {/* Second Group: User Profile */}
-        <Sidebar.ItemGroup>
-          <Link href="/dashboard/my-profile" passHref>
-            <Sidebar.Item href="#" icon={HiUser} className="flex justify-start">
-              Mi Perfil
-            </Sidebar.Item>
-          </Link>
-          <Link href="/dashboard/messages" passHref>
-            <Sidebar.Item href="#" icon={HiMail} className="flex justify-start">
-              Mensajes
-            </Sidebar.Item>
-          </Link>
-        </Sidebar.ItemGroup>
-
-        {/* Third Group: Administration and Settings */}
-        <Sidebar.ItemGroup>
-          <Link href="/dashboard/users" passHref>
-            <Sidebar.Item icon={HiUserGroup} className="flex justify-start">
-              Usuarios
-            </Sidebar.Item>
-          </Link>
-          <Link href="/dashboard/configurations" passHref>
-            <Sidebar.Item icon={HiCog} className="flex justify-start">
-              Configuraciones
-            </Sidebar.Item>
-          </Link>
-          <Sidebar.Item href="#" icon={HiLogout} className="flex justify-start">
-            Cerrar Sesión
-          </Sidebar.Item>
+          ))}
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
