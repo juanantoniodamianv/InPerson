@@ -54,3 +54,4 @@ Before starting, it is recommended to pull the changes from Supabase first.
   luego le das RUN en la esquina inferior derecha (o ctrl + enter) y ya te aparecera el triger creado correctamente.
 - Para visualizar logs referentes a Postgres, refiera se a Logs->Postgres
 - UI: https://flowbite.com/blocks/
+- The command to generate typescript types from Supabase is `npm run gen:types`, remember to change the project-id parameter in `package.json` before to use it.

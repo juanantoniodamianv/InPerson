@@ -6,11 +6,12 @@ import { twMerge } from "tailwind-merge";
 import { usePathname } from "next/navigation";
 import { useSidebarContext } from "@/src/context/sidebar-context";
 
+import SignOutButton from "./sign-out-button";
+
 const links = [
   { name: "Home", href: "/dashboard", icon: HiHome },
   { name: "My Profile", href: "/dashboard/my-profile", icon: HiUser },
   { name: "Configurations", href: "/dashboard/configurations", icon: HiCog },
-  { name: "Log Out", href: "#", icon: HiLogout },
 ];
 
 const DashboardSidebar: FC = function () {
@@ -45,6 +46,9 @@ const DashboardSidebar: FC = function () {
             </Sidebar.Item>
           ))}
         </Sidebar.ItemGroup>
+
+        <Sidebar.ItemGroup></Sidebar.ItemGroup>
+        <SignOutButton />
       </Sidebar.Items>
     </Sidebar>
   );

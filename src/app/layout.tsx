@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const RootLayout: FC<PropsWithChildren> = function ({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <ThemeModeScript />
       </head>
